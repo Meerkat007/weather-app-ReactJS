@@ -1,5 +1,5 @@
 'use strict';
-// var createFragment = require('react-addons-create-fragment');
+
 /* container for the whole weather display area */
 class WeatherApp extends React.Component {
     constructor() {
@@ -30,7 +30,17 @@ class WeatherApp extends React.Component {
     
     /* Called automatically after the component is rendered for the first time. */
 	componentDidMount() {
-		this.loadDataFromServer();
+		// this.loadDataFromServer();
+        this.setState({
+            temp: this.props.data.main.temp,
+            condition: this.props.data.weather[0].description,
+            conditionIcon: this.props.data.weather[0].icon,
+            wind: this.props.data.wind.speed,
+            pressure: this.props.data.main.pressure,
+            sunSet: this.props.data.main.sunset,
+            sunRise: this.props.data.main.sunrise,
+            humidity: this.props.data.main.humidity
+        });
 	}
     
     render() {       
@@ -39,8 +49,7 @@ class WeatherApp extends React.Component {
             <span className="city">Toronto, ON</span>
             <SearchBar />
             <WeatherData 
-                temp={this.state.temp}
-                condition={this.state.condition}
+                data={this.state}
             />
           </div>
         );
@@ -61,47 +70,105 @@ class SearchBar extends React.Component {
 /* container for the weather data area */
 class WeatherData extends React.Component {
     render() {
+        var iconUrl = `http://openweathermap.org/img/w/${this.props.data.conditionIcon}.png`;
         return (
           <div className="data-container">
             <div className="city-tablet-above">
                 <span>city name</span>
             </div>
             <div className="temperature-container">
-                <span id="temperature-value">{this.props.temp}</span>
-                <span id="unit">&#8451;</span>
+                <div className="condition-icon">
+                    <img src={iconUrl} />
+                </div>
+                <div className="temperature">
+                    <span id="temperature-value">{this.props.data.temp}</span>
+                    <span id="unit">&#8451;</span>
+                    <div>{this.props.data.condition}</div>
+                </div>
             </div>
-            <div className="condition-container">
-                <span>{this.props.condition}</span>
-            </div>
+            <OtherConditions 
+                wind = {this.props.data.wind}
+                pressure = {this.props.data.pressure}
+                sunRise = {this.props.sunRise}
+                sunSet = {this.props.sunSet}
+                humidity = {this.props.humidity}
+            />
           </div>   
         );
     }
 }
 
+class OtherConditions extends React.Component {
+    render() {
+        return (
+            <ul className="other-conditions">
+                <li className="wind">
+                    <span>Wind</span>
+                    <span>{this.props.wind}</span>
+                </li>
+                <li className="pressure">
+                    <span>Pressure</span>
+                    <span>{this.props.pressure}</span>
+                </li>
+                <li>
+                    <span>Sunrise/Sunset</span>
+                    <span>16:00</span>
+                    <span>12:00</span>
+                </li>
+                <li>
+                    <span>Humidity</span>
+                    <span>1222</span>
+                </li>
+            </ul>
+        );
+    }
+}
 
 var currentCondition = {
- "query": {
-  "count": 1,
-  "created": "2016-06-03T16:15:11Z",
-  "lang": "en-GB",
-  "results": {
-   "channel": {
-    "item": {
-     "condition": {
-      "code": "32",
-      "date": "Fri, 03 Jun 2016 11:00 AM EDT",
-      "temp": "18",
-      "text": "Sunny"
-     }
+  "coord": {
+    "lon": -79.42,
+    "lat": 43.7
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
     }
-   }
-  }
- }
+  ],
+  "base": "cmc stations",
+  "main": {
+    "temp": 26.48,
+    "pressure": 1016,
+    "humidity": 49,
+    "temp_min": 22,
+    "temp_max": 26
+  },
+  "wind": {
+    "speed": 3.1,
+    "deg": 120
+  },
+  "clouds": {
+    "all": 1
+  },
+  "dt": 1464983202,
+  "sys": {
+    "type": 1,
+    "id": 3721,
+    "message": 0.0043,
+    "country": "CA",
+    "sunrise": 1464946644,
+    "sunset": 1465001708
+  },
+  "id": 6167865,
+  "name": "Toronto",
+  "cod": 200
 };
  
 var url = "https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'toronto%2C%20on')%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
 ReactDOM.render(
-  <WeatherApp url={url} />,
+  <WeatherApp url={url} data={currentCondition}/>,
   document.getElementById('content')
 );

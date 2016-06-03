@@ -16,15 +16,50 @@
     display: none;
 }
 
+.temperature-container {
+    display: block;
+    text-align: left;
+    padding: 10px 10px;
+}
+
+.condition-icon {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.temperature {
+    display: inline-block;
+    text-align: left;
+}
+
 #temperature-value {
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 #unit {
     display: inline-block;
     vertical-align: top;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 2em;
+}
+
+/* -------- other conditions --------*/
+.other-conditions {
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+    font-size: 3.8vw;
+}
+
+.other-conditions li {
+    display: inline-block;
+    text-align: center;
+    width: 24%;
+    vertical-align: top;
+}
+
+.other-conditions li span {
+    display: block;
 }
 
 /* -------- media queries -------- */
