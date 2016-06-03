@@ -1,0 +1,35 @@
+/* -------- weather app -------- */
+.weather-app-wrapper {
+    text-align: center;
+}
+
+/* -------- search bar -------- */
+#search-text-field {
+    width: 90%;
+    color: #8e8f90;
+    overflow: hidden;
+    box-shadow: -1px 0px 8px 0.7px rgba(0,0,0,0.2);
+}
+
+/* -------- weather data -------- */
+.city-tablet-above {
+    display: none;
+}
+
+#temperature-value {
+    font-size: 2em;
+}
+
+#unit {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+    line-height: 2em;
+}
+
+/* -------- media queries -------- */
+@media only screen and (min-width: 767px) {
+        .city-tablet-above {
+            display: block;
+        }
+    }
