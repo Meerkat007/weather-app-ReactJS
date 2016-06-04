@@ -15,7 +15,12 @@ body {
     overflow: hidden;
     height: 1.6em;
     font-size: 1em;
-    box-shadow: -1px 0px 8px 0.7px rgba(0,0,0,0.2);
+}
+
+.btn .btn-default .search-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
 
 /* -------- weather data -------- */

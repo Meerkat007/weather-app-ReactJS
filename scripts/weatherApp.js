@@ -61,8 +61,9 @@ class SearchBar extends React.Component {
     render() {
         return (
           <div className="search-bar-wrapper">
-            <button type="button"></button> 
-            <input id="search-text-field" type="search" placeholder="Search for location" autocomplete="on"></input>  
+            <button class="btn btn-xs btn-default search-btn" type="submit"></button> 
+            <input id="search-text-field" type="search" placeholder="Search for location" autocomplete="on"></input>
+            <i class="glyphicon glyphicon-search"></i>  
           </div>
         );
     }
