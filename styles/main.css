@@ -8,19 +8,15 @@ body {
 }
 
 /* -------- search bar -------- */
-#search-text-field {
-    margin-top: 10px;
+.searchbox-wrapper {
+    text-align: center;
+}
+.input-group {
+    margin: 10px auto;
     width: 90%;
-    color: #8e8f90;
     overflow: hidden;
     height: 1.6em;
     font-size: 1em;
-}
-
-.btn .btn-default .search-btn {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
 }
 
 /* -------- weather data -------- */
@@ -97,7 +93,7 @@ body {
 
 /* -------- media queries -------- */
 @media only screen and (min-width: 767px) {
-        .city-tablet-above {
-            display: block;
-        }
+    .city-tablet-above {
+        display: block;
     }
+}

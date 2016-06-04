@@ -60,11 +60,14 @@ class WeatherApp extends React.Component {
 class SearchBar extends React.Component {
     render() {
         return (
-          <div className="search-bar-wrapper">
-            <button class="btn btn-xs btn-default search-btn" type="submit"></button> 
-            <input id="search-text-field" type="search" placeholder="Search for location" autocomplete="on"></input>
-            <i class="glyphicon glyphicon-search"></i>  
-          </div>
+            <div className="searchbox-wrapper">
+                <div className="input-group">
+                    <div className="input-group-btn">
+                        <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                    </div>
+                    <input type="text" className="form-control" placeholder="Search for location" name="srch-term" id="srch-term"></input>
+                </div>
+            </div>
         );
     }
 }
