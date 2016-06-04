@@ -45,14 +45,16 @@ body {
 }
 
 #temperature-value {
+    display: inline-block;
     font-size: 2.6em;
+    line-height: 1.3;
 }
 
 #unit {
     display: inline-block;
     vertical-align: top;
     font-size: 13px;
-    line-height: 2em;
+    line-height: 1.5;
 }
 
 .condition {
@@ -63,6 +65,7 @@ body {
 /* -------- other conditions --------*/
 .other-conditions {
     display: block;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
