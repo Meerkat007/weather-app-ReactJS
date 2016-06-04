@@ -1,0 +1,25 @@
+{
+  "name": "weather-app",
+  "description": "A weather app built using ReactJS",
+  "main": "index.js",
+  "authors": [
+    "Yuan Ji"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs"
+  ],
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.1.0"
+  }
+}

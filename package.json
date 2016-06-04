@@ -1,0 +1,26 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A weather app built using ReactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meerkat007/weather-app-ReactJS.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs"
+  ],
+  "author": "Yuan Ji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Meerkat007/weather-app-ReactJS/issues"
+  },
+  "homepage": "https://github.com/Meerkat007/weather-app-ReactJS#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
+}

@@ -61,6 +61,7 @@ class SearchBar extends React.Component {
     render() {
         return (
           <div className="search-bar-wrapper">
+            <button type="button"></button> 
             <input id="search-text-field" type="search" placeholder="Search for location" autocomplete="on"></input>  
           </div>
         );
@@ -83,7 +84,7 @@ class WeatherData extends React.Component {
                 <div className="temperature">
                     <span id="temperature-value">{this.props.data.temp}</span>
                     <span id="unit">&#8451;</span>
-                    <div>{this.props.data.condition}</div>
+                    <span className="condition">{this.props.data.condition}</span>
                 </div>
             </div>
             <OtherConditions 

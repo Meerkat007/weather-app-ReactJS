@@ -44,7 +44,7 @@ body {
 }
 
 #temperature-value {
-    font-size: 2.5em;
+    font-size: 2.6em;
 }
 
 #unit {
@@ -52,6 +52,11 @@ body {
     vertical-align: top;
     font-size: 13px;
     line-height: 2em;
+}
+
+.condition {
+    display: block;
+    font-size: 0.9em; 
 }
 
 /* -------- other conditions --------*/
