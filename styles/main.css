@@ -1,3 +1,7 @@
+body {
+    font-family: sans-serif;
+}
+
 /* -------- weather app -------- */
 .weather-app-wrapper {
     text-align: center;
@@ -5,13 +9,20 @@
 
 /* -------- search bar -------- */
 #search-text-field {
+    margin-top: 10px;
     width: 90%;
     color: #8e8f90;
     overflow: hidden;
+    height: 1.6em;
+    font-size: 1em;
     box-shadow: -1px 0px 8px 0.7px rgba(0,0,0,0.2);
 }
 
 /* -------- weather data -------- */
+.data-container {
+    text-align: center;
+}
+
 .city-tablet-above {
     display: none;
 }
@@ -45,17 +56,29 @@
 
 /* -------- other conditions --------*/
 .other-conditions {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
     width: 100%;
     list-style-type: none;
-    font-size: 3.8vw;
+    font-size: 3.4vw;
+    text-align: left;
 }
 
 .other-conditions li {
     display: inline-block;
-    text-align: center;
     width: 24%;
+    text-align: center;
     vertical-align: top;
+}
+
+.other-conditions li:first-child {
+    margin-right: -10px;
+}
+
+.other-conditions li:last-child {
+    margin-left: 10px;
 }
 
 .other-conditions li span {

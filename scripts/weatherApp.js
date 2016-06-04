@@ -98,28 +98,31 @@ class WeatherData extends React.Component {
     }
 }
 
+/* other conditions including wind, pressure, sunrise, sunset, humidity */
 class OtherConditions extends React.Component {
     render() {
         return (
+            <div className="other-conditions-wrapper">
             <ul className="other-conditions">
                 <li className="wind">
-                    <span>Wind</span>
+                    <span><strong>Wind</strong></span>
                     <span>{this.props.wind}</span>
                 </li>
                 <li className="pressure">
-                    <span>Pressure</span>
+                    <span><strong>Pressure</strong></span>
                     <span>{this.props.pressure}</span>
                 </li>
                 <li>
-                    <span>Sunrise/Sunset</span>
+                    <span><strong>Sunrise/Sunset</strong></span>
                     <span>16:00</span>
                     <span>12:00</span>
                 </li>
                 <li>
-                    <span>Humidity</span>
+                    <span><strong>Humidity</strong></span>
                     <span>1222</span>
                 </li>
             </ul>
+            </div>
         );
     }
 }
