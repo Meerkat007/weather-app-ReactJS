@@ -59,6 +59,7 @@ class WeatherApp extends React.Component {
     }
 }
 
+/* Display the current location for retrieving the weather data. */
 class LocationDisplay extends React.Component {
     constructor() {
         super();
@@ -101,12 +102,12 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="searchbox-wrapper">
-                <div className="input-group">
+                <form className="input-group" onSubmit={(this.handleSubmit).bind(this)}>
                     <div className="input-group-btn">
-                        <button className="btn btn-default" type="submit" onClick={(this.handleSubmit).bind(this)}><i className="glyphicon glyphicon-search"></i></button>
+                        <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
                     </div>
                     <input type="text" className="form-control" placeholder="Search for location" onChange={(this.handleSearchLocationChange).bind(this)} name="srch-term" id="srch-term"></input>
-                </div>
+                </form>
             </div>
         );
     }
