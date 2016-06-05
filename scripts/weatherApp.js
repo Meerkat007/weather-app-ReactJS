@@ -58,14 +58,34 @@ class WeatherApp extends React.Component {
 
 /* container for the search bar */
 class SearchBar extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            cityName: 'Toronto'
+        };
+    }
+    
+    /* handle search location change */
+    handleSearchLocationChange(event) {
+        console.log(event.target.value);
+        this.setState({cityName: event.target.value});
+    }
+    
+    /* functoin to perform when search button is clicked */
+    handleSubmit(event) {
+        console.log('submit clicked');
+        event.preventDefault();
+        
+    }
+    
     render() {
         return (
             <div className="searchbox-wrapper">
                 <div className="input-group">
                     <div className="input-group-btn">
-                        <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                        <button className="btn btn-default" type="submit" onClick={(this.handleSubmit).bind(this)}><i className="glyphicon glyphicon-search"></i></button>
                     </div>
-                    <input type="text" className="form-control" placeholder="Search for location" name="srch-term" id="srch-term"></input>
+                    <input type="text" className="form-control" placeholder="Search for location" onChange={(this.handleSearchLocationChange).bind(this)} name="srch-term" id="srch-term"></input>
                 </div>
             </div>
         );
