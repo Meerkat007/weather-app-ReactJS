@@ -12,6 +12,10 @@ body {
     margin-top: 10px;
 }
 
+.location-display .city {
+    font-size: 1.2em;
+}
+
 /* -------- search bar -------- */
 .searchbox-wrapper {
     text-align: center;
