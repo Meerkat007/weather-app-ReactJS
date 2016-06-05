@@ -10,7 +10,8 @@ class WeatherApp extends React.Component {
         };
     }
     
-    loadDataFromServer() {
+    sendQuery(location) {
+        console.log('sendquery: ' + location);
         $.ajax({
             url: this.props.url,
             dataType: 'jsonp',
@@ -30,7 +31,7 @@ class WeatherApp extends React.Component {
     
     /* Called automatically after the component is rendered for the first time. */
 	componentDidMount() {
-		// this.loadDataFromServer();
+		// this.sendQuery();
         this.setState({
             temp: this.props.data.main.temp,
             condition: this.props.data.weather[0].description,
@@ -46,12 +47,31 @@ class WeatherApp extends React.Component {
     render() {       
         return (
           <div className="weather-app-wrapper"> 
-            <span className="city">Toronto, ON</span>
-            <SearchBar />
+            <LocationDisplay />
+            <SearchBar 
+                onSearchSubmit={(this.sendQuery).bind(this)}
+            />
             <WeatherData 
                 data={this.state}
             />
           </div>
+        );
+    }
+}
+
+class LocationDisplay extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            location: 'Toronto, ON'
+        }
+    }
+    
+    render() {
+        return (
+            <div className="location-display">  
+                <span className="city">{this.state.location}</span>
+            </div>
         );
     }
 }
@@ -61,21 +81,21 @@ class SearchBar extends React.Component {
     constructor() {
         super();
         this.state = {
-            cityName: 'Toronto'
+            searchContent: '',
         };
     }
     
     /* handle search location change */
     handleSearchLocationChange(event) {
         console.log(event.target.value);
-        this.setState({cityName: event.target.value});
+        this.setState({searchContent: event.target.value});
     }
     
     /* functoin to perform when search button is clicked */
     handleSubmit(event) {
         console.log('submit clicked');
         event.preventDefault();
-        
+        this.props.onSearchSubmit(this.state.searchContent);
     }
     
     render() {
