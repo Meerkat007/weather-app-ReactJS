@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 /* container for the whole weather display area */
 class WeatherApp extends React.Component {
     constructor() {
@@ -8,40 +10,75 @@ class WeatherApp extends React.Component {
             temp: '',
             condition: ''
         };
+        this.location = 'toronto,on';
+        this.currentWeatherQuery = 'http://api.openweathermap.org/data/2.5/weather?q=';
+        this.forecastQuery = 'api.openweathermap.org/data/2.5/forecast/weather?q=';
     }
     
-    sendQuery(location) {
-        console.log('sendquery: ' + location);
+    convertUnixTime(unixTime) {
+        var date = new Date(unixTime * 1000); 
+        var hours = date.getHours();
+        var minutes = '0' + date.getMinutes();
+        console.log(hours + ':' + minutes.substr(-2));
+        return hours + ':' + minutes.substr(-2);
+    }
+    
+    /* Prepare query for server request. */
+    prepareQuery(query, location) {
+        return query + location + '&units=metric&APPID=82bd3d882ba68631b4379a30406c018b';
+    }
+    
+    /* Send perpared query to webserver. */
+    sendQuery(queryType, location) {
+        var query = this.prepareQuery(queryType, location);
+        this.makeQueryCall(query);
+    }
+    
+    makeQueryCall(query) {
         $.ajax({
-            url: this.props.url,
-            dataType: 'jsonp',
+            url: query,
+            dataType: 'json',
             cache: false,
             success: function(data) {
-                var result = data.query.results.channel.item.condition;
+                console.log(data);
+                var mainData = data.main;
+                var weatherDescription = data.weather[0];
                 this.setState({
-                    temp: result.temp,
-                    condition: result.text
+                    condition: weatherDescription.description,
+                    conditionIcon: weatherDescription.icon,
+                    temp: mainData.temp,
+                    wind: data.wind.speed,
+                    pressure: mainData.pressure,
+                    humidity: mainData.humidity,
+                    sunRise: this.convertUnixTime(data.sys.sunrise),
+                    sunSet: this.convertUnixTime(data.sys.sunset)
                 });
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
+    }
+    
+    /* Send query for current weather conditions. */
+    sendCurrentWeatherQuery(location) {
+        console.log('send currentWeatherQuery called' + this.currentWeatherQuery);
+        this.sendQuery(this.currentWeatherQuery, location);
 	}
     
     /* Called automatically after the component is rendered for the first time. */
 	componentDidMount() {
-		// this.sendQuery();
-        this.setState({
-            temp: this.props.data.main.temp,
-            condition: this.props.data.weather[0].description,
-            conditionIcon: this.props.data.weather[0].icon,
-            wind: this.props.data.wind.speed,
-            pressure: this.props.data.main.pressure,
-            sunSet: this.props.data.main.sunset,
-            sunRise: this.props.data.main.sunrise,
-            humidity: this.props.data.main.humidity
-        });
+		this.sendCurrentWeatherQuery(this.location);
+        // this.setState({
+        //     temp: this.props.data.main.temp,
+        //     condition: this.props.data.weather[0].description,
+        //     conditionIcon: this.props.data.weather[0].icon,
+        //     wind: this.props.data.wind.speed,
+        //     pressure: this.props.data.main.pressure,
+        //     sunSet: this.props.data.main.sunset,
+        //     sunRise: this.props.data.main.sunrise,
+        //     humidity: this.props.data.main.humidity
+        // });
 	}
     
     render() {       
@@ -49,7 +86,7 @@ class WeatherApp extends React.Component {
           <div className="weather-app-wrapper"> 
             <LocationDisplay />
             <SearchBar 
-                onSearchSubmit={(this.sendQuery).bind(this)}
+                onSearchSubmit={(this.sendCurrentWeatherQuery).bind(this)}
             />
             <WeatherData 
                 data={this.state}
@@ -135,9 +172,9 @@ class WeatherData extends React.Component {
             <OtherConditions 
                 wind = {this.props.data.wind}
                 pressure = {this.props.data.pressure}
-                sunRise = {this.props.sunRise}
-                sunSet = {this.props.sunSet}
-                humidity = {this.props.humidity}
+                sunRise = {this.props.data.sunRise}
+                sunSet = {this.props.data.sunSet}
+                humidity = {this.props.data.humidity}
             />
           </div>   
         );
@@ -160,8 +197,8 @@ class OtherConditions extends React.Component {
                 </li>
                 <li>
                     <span><strong>Sunrise/Sunset</strong></span>
-                    <span>16:00</span>
-                    <span>12:00</span>
+                    <span>{this.props.sunRise}</span>
+                    <span>{this.props.sunSet}</span>
                 </li>
                 <li>
                     <span><strong>Humidity</strong></span>
@@ -215,9 +252,9 @@ var currentCondition = {
   "cod": 200
 };
  
-var url = "https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'toronto%2C%20on')%20and%20u%3D'c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+
 
 ReactDOM.render(
-  <WeatherApp url={url} data={currentCondition}/>,
+  <WeatherApp data={currentCondition}/>,
   document.getElementById('content')
 );
