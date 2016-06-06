@@ -158,8 +158,8 @@ class WeatherData extends React.Component {
                 <div className="temperature">
                     <span id="temperature-value">{this.props.data.temp}</span>
                     <span id="unit">&#8451;</span>
-                    <span className="condition">{this.props.data.condition}</span>
                 </div>
+                <span className="condition">{this.props.data.condition}</span>
             </div>
             <OtherConditions 
                 wind = {this.props.data.wind}
@@ -200,6 +200,16 @@ class OtherConditions extends React.Component {
             </div>
         );
     }
+}
+
+/* list of forcasts */
+class ForeCastList extends React.Component {
+    
+}
+
+/* an item displaying the forecast of a given day */
+class ForeCastListItem extends React.Component {
+    
 }
 
 var currentCondition = {
