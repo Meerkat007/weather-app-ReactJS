@@ -110,6 +110,52 @@ body {
     display: block;
 }
 
+/* -------- forecast list -------- */
+.other-conditions-forecast {
+    display: inline-block;
+}
+
+.forecast-temperature {
+    font-size: 1.5em;
+}
+
+/* -------- forecast list item -------- */
+.forecast-list-item {
+    width: 90%;
+    text-align: left;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    background: #eeeeee;
+}
+
+.forecast-date {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.main-forecast-data {
+    display: inline-block;
+    width: 50%;
+    font-size: 0.9em;
+    vertical-align: top;
+}
+
+.main-forecast-data span {
+    text-transform: capitalize;
+}
+
+.other-conditions-forecast {
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+.other-condition-label,
+.other-conditions-forecast span {
+    display: inline-block;
+    padding-right: 5px;
+}
+
 /* -------- media queries -------- */
 @media only screen and (max-width: 766px) and (min-width: 426px) {
         #temperature-value {
