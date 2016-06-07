@@ -13,13 +13,15 @@
             this.forecastQuery = 'api.openweathermap.org/data/2.5/forecast/weather?q=';
         }
 
+        /* convert Unix time to UTC time. */
         convertUnixTime(unixTime) {
             var date = new Date(unixTime * 1000);
             var hours = date.getHours();
             var minutes = '0' + date.getMinutes();
-            console.log(hours + ':' + minutes.substr(-2));
             return hours + ':' + minutes.substr(-2);
         }
+
+        //TODO convert unix time to local time.
 
         /* Prepare query for server request. */
         prepareQuery(query, location) {
@@ -32,13 +34,13 @@
             this.makeQueryCall(query);
         }
 
+
         makeQueryCall(query) {
             $.ajax({
                 url: query,
                 dataType: 'json',
                 cache: false,
                 success: function (data) {
-                    console.log(data);
                     var mainData = data.main;
                     var weatherDescription = data.weather[0];
                     this.setState({
@@ -62,7 +64,6 @@
 
         /* Send query for current weather conditions. */
         sendCurrentWeatherQuery(location) {
-            console.log('send currentWeatherQuery called' + this.currentWeatherQuery);
             this.sendQuery(this.currentWeatherQuery, location);
         }
 
@@ -119,13 +120,11 @@
 
         /* handle search location change */
         handleSearchLocationChange(event) {
-            console.log(event.target.value);
             this.setState({ searchContent: event.target.value });
         }
 
         /* functoin to perform when search button is clicked */
         handleSubmit(event) {
-            console.log('submit clicked');
             event.preventDefault();
             this.props.onSearchSubmit(this.state.searchContent);
         }
@@ -239,14 +238,15 @@
                         </div>
                     </div>
                     <div className="other-conditions-forecast">
-                        <OtherConditionList />
+                        <OtherForecastCondition />
                     </div>
                 </div>
             );
         }
     }
 
-    function OtherConditionList(props) {
+    /*  */
+    function OtherForecastCondition(props) {
         return (
             <div>
             <div className="other-list-condition-item">
@@ -260,49 +260,6 @@
             </div>
         );
     }
-
-
-    var currentCondition = {
-        "coord": {
-            "lon": -79.42,
-            "lat": 43.7
-        },
-        "weather": [
-            {
-                "id": 800,
-                "main": "Clear",
-                "description": "clear sky",
-                "icon": "01d"
-            }
-        ],
-        "base": "cmc stations",
-        "main": {
-            "temp": 26.48,
-            "pressure": 1016,
-            "humidity": 49,
-            "temp_min": 22,
-            "temp_max": 26
-        },
-        "wind": {
-            "speed": 3.1,
-            "deg": 120
-        },
-        "clouds": {
-            "all": 1
-        },
-        "dt": 1464983202,
-        "sys": {
-            "type": 1,
-            "id": 3721,
-            "message": 0.0043,
-            "country": "CA",
-            "sunrise": 1464946644,
-            "sunset": 1465001708
-        },
-        "id": 6167865,
-        "name": "Toronto",
-        "cod": 200
-    };
 
     var forecastData = {
         0: {
@@ -345,9 +302,8 @@
 
     ReactDOM.render(
         <WeatherApp
-            data={currentCondition}
             forecastData={forecastData}
-            />,
+        />,
         document.getElementById('content')
     );
 })();

@@ -230,6 +230,10 @@ body {
         margin-right: 10px;
         margin-left: 0;
     }
+
+    .forecast-temperature {
+        font-size: 1.2em;
+    }
     
     .other-conditions li:first-child {
         margin-right: 10px;
@@ -237,5 +241,20 @@ body {
     
     .other-conditions li:last-child {
         margin-left: 0px;
+    }
+
+    .forecast-list-item {
+        display: inline-block;
+        width: 16%;
+        margin-right: 2.5%;
+    }
+
+    .forecast-list-item:last-child {
+        margin-right: 0;
+    }
+
+    .main-forecast-data,
+    .other-conditions {
+        display: block;
     }
 }
