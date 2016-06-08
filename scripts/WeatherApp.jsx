@@ -6,7 +6,8 @@
             super();
             this.state = {
                 temp: '',
-                condition: ''
+                condition: '',
+                conditionIcon: '01d' // A default value to prevent 404 error when 
             };
             this.location = 'toronto,on'; // TODO autodetect location
             this.currentWeatherQuery = 'http://api.openweathermap.org/data/2.5/weather?q=';
@@ -15,13 +16,10 @@
 
         /* convert Unix time to UTC time. */
         convertUnixTime(unixTime) {
-            var date = new Date(unixTime * 1000);
-            var hours = date.getHours();
-            var minutes = '0' + date.getMinutes();
-            return hours + ':' + minutes.substr(-2);
+            var time = moment.unix(unixTime);
+            var timeFormatted = moment(time, 'HH:MM').format('h:m a')
+            return timeFormatted;
         }
-
-        //TODO convert unix time to local time.
 
         /* Prepare query for server request. */
         prepareQuery(query, location) {
@@ -146,6 +144,7 @@
     class WeatherData extends React.Component {
         render() {
             var iconUrl = `http://openweathermap.org/img/w/${this.props.data.conditionIcon}.png`;
+
             return (
                 <div className="data-container">
                     <div className="city-tablet-above">
@@ -153,7 +152,7 @@
                     </div>
                     <div className="temperature-container">
                         <div className="condition-icon">
-                            <img src={iconUrl} />
+                            <img src={iconUrl} alt='weather-icon' />
                         </div>
                         <div className="temperature">
                             <span id="temperature-value">{this.props.data.temp}</span>
