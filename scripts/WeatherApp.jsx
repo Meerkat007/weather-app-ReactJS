@@ -123,10 +123,16 @@
         /* functoin to perform when search button is clicked */
         handleSubmit(event) {
             event.preventDefault();
-            this.props.onSearchSubmit(this.state.searchContent);
+            if (this.state.searchContent) {
+                this.props.onSearchSubmit(this.state.searchContent);
+            }
         }
 
         render() {
+            // unfocus the search button after mouse click
+            // $(".btn").mouseup(function(){
+            //     $(".btn").blur();
+            // });
             return (
                 <div className="searchbox-wrapper">
                     <form className="input-group" onSubmit={(this.handleSubmit).bind(this) }>
