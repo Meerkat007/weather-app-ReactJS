@@ -158,6 +158,9 @@ body {
 
 /* -------- media queries -------- */
 @media only screen and (max-width: 766px) and (min-width: 426px) {
+        body {
+            padding: 0 5%;
+        }
         #temperature-value {
             font-size: 100px;
             line-height: 1;
@@ -167,6 +170,10 @@ body {
             display: inline-block;
             position: absolute;
             transform: translateX(-200%);
+        }
+
+        .other-conditions {
+            font-size: 1em;
         }
     }
             
@@ -231,10 +238,6 @@ body {
         margin-left: 0;
     }
 
-    .forecast-temperature {
-        font-size: 1.2em;
-    }
-    
     .other-conditions li:first-child {
         margin-right: 10px;
     }
@@ -242,7 +245,14 @@ body {
     .other-conditions li:last-child {
         margin-left: 0px;
     }
+}
 
+@media only screen and (min-width: 1023px) {
+
+/* -------- media query - forecast list item -------- */
+    .forecast-temperature {
+        font-size: 1.2em;
+    }
     .forecast-list-item {
         display: inline-block;
         width: 16%;
@@ -256,5 +266,10 @@ body {
     .main-forecast-data,
     .other-conditions {
         display: block;
+        width: 100%;
     }
+
+     .main-forecast-data {
+         padding-bottom: 5px;
+     }
 }
