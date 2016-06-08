@@ -21,12 +21,17 @@ body {
 .searchbox-wrapper {
     text-align: center;
 }
+
 .input-group {
     margin: 10px auto;
     width: 90%;
     overflow: hidden;
     height: 1.6em;
     font-size: 1em;
+}
+
+.input-group .btn:focus {
+    outline: none;
 }
 
 /* -------- weather data -------- */
