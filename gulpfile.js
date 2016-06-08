@@ -17,6 +17,7 @@ var useref = require('gulp-useref');
 var buildPath = {
     base: '../weatherApp',
     JS: '../weatherApp/js/',
+    jsCustom: '../weatherApp/js/custom',
     cssDist: '../weatherApp/styles/'
 }
 
@@ -47,13 +48,15 @@ gulp.task('concat-minify-css', function() {
         .pipe(gulp.dest(buildPath.cssDist))
 });
 
+
+
 /* convert jsx to js */
 gulp.task('convert-jsx', function() {
   return gulp.src(sourcePath.customJSX + '/*.jsx')
     .pipe(babel({
       "plugins": ["transform-react-jsx"]
     }))
-    .pipe(gulp.dest(buildPath.jsCustom));
+    .pipe(gulp.dest(buildPath.jsCustom))
 });
 
 /* concat all min.js files */
@@ -63,11 +66,21 @@ gulp.task('concat-minify-js', function() {
         'node_modules/react-dom/dist/react-dom.min.js',
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap/dist/bootstrap.min.js',
-        buildPath.jsCustom
+        'node_modules/moment/min/moment-with-locales.min.js'
         ])
         .pipe(concat('app.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(buildPath.JS))
+});
+
+/* concat min.js files with jsx-js files */
+gulp.task('concat-js-react-components', ['convert-jsx', 'concat-minify-js'], function() {
+    return gulp.src([
+        buildPath.JS + '/*.min.js',
+        buildPath.jsCustom + '/*.js'
+    ])
+    .pipe(concat('app.min.js'))
+    .pipe(gulp.dest(buildPath.JS))
 });
 
 gulp.task('replace-html', function() {
@@ -79,4 +92,4 @@ gulp.task('replace-html', function() {
         .pipe(gulp.dest(buildPath.base))
 });
 
-gulp.task('build', ['concat-minify-css', 'convert-jsx', 'concat-minify-js', 'replace-html']);
+gulp.task('build', ['concat-minify-css', 'concat-js-react-components', 'replace-html']);
