@@ -7,7 +7,7 @@
             this.state = {
                 temp: '',
                 condition: '',
-                conditionIcon: '01d' // A default value to prevent 404 error when 
+                conditionIcon: '01d' // A default value to prevent 404 error when the icon image http request is sent for the first time.
             };
             this.location = 'toronto,on'; // TODO autodetect location
             this.currentWeatherQuery = 'http://api.openweathermap.org/data/2.5/weather?q=';
@@ -17,7 +17,7 @@
         /* convert Unix time to UTC time. */
         convertUnixTime(unixTime) {
             var time = moment.unix(unixTime);
-            var timeFormatted = moment(time, 'HH:MM').format('h:m a')
+            var timeFormatted = moment(time, 'HH:MM').format('h:mm a')
             return timeFormatted;
         }
 
