@@ -8,7 +8,7 @@
                 temp: '',
                 condition: ''
             };
-            this.location = 'toronto,on';
+            this.location = 'toronto,on'; // TODO autodetect location
             this.currentWeatherQuery = 'http://api.openweathermap.org/data/2.5/weather?q=';
             this.forecastQuery = 'api.openweathermap.org/data/2.5/forecast/weather?q=';
         }
@@ -33,7 +33,6 @@
             var query = this.prepareQuery(queryType, location);
             this.makeQueryCall(query);
         }
-
 
         makeQueryCall(query) {
             $.ajax({
@@ -245,7 +244,7 @@
         }
     }
 
-    /*  */
+    /* forecast conditions */
     function OtherForecastCondition(props) {
         return (
             <div>
