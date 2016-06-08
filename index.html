@@ -3,26 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <title>React Tutorial</title>
-    <!-- Not present in the tutorial. Just for basic styling. -->
+    <title>Weather App</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- build:replace-css -->
     <link rel="stylesheet" href="styles/main.css" />
-    
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js"></script>-->
+    <!-- endbuild -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
   </head>
   <body>
     <div id="content"></div>
-    <!-- build:js build/js/main.min.js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/bower_components/react/react-with-addons.js"></script>
-    <script src="/bower_components/react/react.js"></script>
-    <script src="/bower_components/react/react-dom.js"></script>
+    <!-- build:replace-js -->
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="/node_modules/react/dist/react.js"></script>
+    <script src="/node_modules/react-dom/dist/react-dom.js"></script>
+    
     <script type="text/babel" src="/scripts/WeatherApp.jsx"></script>
-    <!--endbuild -->
+    <!-- endbuild -->
   </body>
 </html>
