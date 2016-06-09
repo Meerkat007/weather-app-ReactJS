@@ -12,14 +12,15 @@
   </head>
   <body>
     <div id="content"></div>
-    <!-- build:replace-js -->
+    <!-- build:replace-js-vendor -->
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/node_modules/moment/min/moment-with-locales.min.js"></script>
-
     <script src="/node_modules/react/dist/react.js"></script>
     <script src="/node_modules/react-dom/dist/react-dom.js"></script>
-    
+    <!-- endbuild -->
+
+    <!-- build:replace-js-app -->
     <script type="text/babel" src="/scripts/WeatherApp.jsx"></script>
     <!-- endbuild -->
   </body>
