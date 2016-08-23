@@ -1,5 +1,7 @@
+import React from 'react'
+
 /* container for the search bar */
-class SearchBar extends React.Component {
+export default class SearchBar extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -14,6 +16,7 @@ class SearchBar extends React.Component {
 
     /* functoin to perform when search button is clicked */
     handleSubmit(event) {
+        console.log(event)
         event.preventDefault();
         if (this.state.searchContent) {
             this.props.onSearchSubmit(this.state.searchContent);
