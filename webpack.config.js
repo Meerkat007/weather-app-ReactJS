@@ -28,5 +28,10 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
-    ]
+    ],
+    externals: {
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+    }
 }
